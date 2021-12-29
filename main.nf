@@ -4,13 +4,13 @@
 // Additionally, this workflow is designed to work in a cluster agnostic manner by using docker / singularity containers.
 
 // params
-params.fastq_input = "$projectDir/demo_data/*"
+params.fastq_input = "$projectDir/demo_data/"
 
 // channels
 raw_fastq_pair_dir = Channel.fromPath(params.fastq_input)
 
 //singularity
-singularity.enabled = true
+//singularity.enabled = true
 
 // remove illumina adaptors
 // 2 INPUTS (PAIRED-END sequencing reads); 1 OUTPUT (paired, trimmed reads--returned as 1 tuple)
@@ -30,8 +30,8 @@ process cut_adapters {
       -b AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
       -B AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
       -o R1.trimm.fastq.gz -p R2.trimm.fastq.gz \
-      fastq_dir/*_R1_*.fastq.gz \
-      fastq_dir/*_R2_*.fastq.gz
+      $fastq_dir/*R1*.fastq.gz \
+      $fastq_dir/*R2*.fastq.gz
     """
 }
 
