@@ -9,6 +9,9 @@ params.fastq_input = "$projectDir/demo_data/*"
 // channels
 raw_fastq_pair_dir = Channel.fromPath(params.fastq_input)
 
+//singularity
+singularity.enabled = true
+
 // remove illumina adaptors
 // 2 INPUTS (PAIRED-END sequencing reads); 1 OUTPUT (paired, trimmed reads--returned as 1 tuple)
 process cut_adapters {
